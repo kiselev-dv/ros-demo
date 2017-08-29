@@ -57,7 +57,7 @@
       if (faceRect) {
         faceRect.remove();
       }
-      faceRect = paper.rect(face.x, face.y, face.w, face.h);
+      faceRect = paper.rect(face.x - face.w / 2, face.y - face.h / 2, face.w, face.h);
     }
 
     function outEmotions(emoji) {
