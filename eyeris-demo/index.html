@@ -10,8 +10,8 @@
 
 <body>
   <h1>Yeyeris demo</h1>
-  <div id="canvas" style="width: 640px; height: 480px; background-color: #aaa;"></div>
-  <img src="http://localhost:8080/stream?topic=/usb_cam_face/image_raw" />
+  <div id="canvas" style="width: 640px; height: 480px; position: absolute; z-index: 1;"></div>
+  <!--<img src="http://localhost:8080/stream?topic=/usb_cam_face/image_raw" /> -->
   <script type="text/javascript" type="text/javascript">
     var ros = new ROSLIB.Ros({
       url : 'ws://localhost:9090'
@@ -27,6 +27,7 @@
     var cam_width = 640;
   
     var paper = Raphael(document.getElementById('canvas'), cam_width, cam_height);
+    paper.image('http://localhost:8080/stream?topic=/usb_cam_face/image_raw', 0, 0, 640, 480);
     
     listener.subscribe(function(message) {
       var face = {
@@ -36,12 +37,15 @@
         h: message.arg_faceh
       };
   
-      paper.clear();
       drawFace(face);
     });
-  
+    
+    var faceRect = null;
     function drawFace(face) {
-      paper.rect(face.x, face.y, face.w, face.h);
+      if (faceRect) {
+        faceRect.remove();
+      }
+      faceRect = paper.rect(face.x, face.y, face.w, face.h);
     }
     
   
