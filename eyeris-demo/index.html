@@ -10,7 +10,7 @@
 
 <body>
   <h1>Yeyeris demo</h1>
-  <div id="canvas" style="width: 640px; height: 480px; position: absolute; z-index: 1;"></div>
+  <div id="canvas" style="width: 640px; height: 480px;"></div>
   <div id="text-out"></div>
 
   <script type="text/javascript" type="text/javascript">
@@ -63,11 +63,11 @@
     function outEmotions(emoji) {
       document.getElementById('text-out').innerHTML = 
         'anger: ' + emoji.anger + '<br>' + 
-        'disgust: ' + emoji.disgust + '<br>'
-        'fear: ' + emoji.fear + '<br>'
-        'joy: ' + emoji.joy + '<br>'
-        'neutral: ' + emoji.neutral + '<br>'
-        'sadness: ' + emoji.sadness + '<br>'
+        'disgust: ' + emoji.disgust + '<br>' +
+        'fear: ' + emoji.fear + '<br>' +
+        'joy: ' + emoji.joy + '<br>' +
+        'neutral: ' + emoji.neutral + '<br>' +
+        'sadness: ' + emoji.sadness + '<br>' +
         'surprise: ' + emoji.surprise;
     }
     
