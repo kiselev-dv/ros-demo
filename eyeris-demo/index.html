@@ -11,7 +11,8 @@
 <body>
   <h1>Yeyeris demo</h1>
   <div id="canvas" style="width: 640px; height: 480px; position: absolute; z-index: 1;"></div>
-  <!--<img src="http://localhost:8080/stream?topic=/usb_cam_face/image_raw" /> -->
+  <div id="text-out"></div>
+
   <script type="text/javascript" type="text/javascript">
     var ros = new ROSLIB.Ros({
       url : 'ws://localhost:9090'
@@ -36,8 +37,19 @@
         w: message.arg_facew,
         h: message.arg_faceh
       };
+
+      var emoji = {
+        anger: message.arg_anger,
+        disgust: message.arg_disgust,
+        fear: message.arg_fear,
+        joy: message.arg_joy,
+        neutral: message.arg_neutral,
+        sadness: message.arg_sadness,
+        surprise: message.arg_surprise,
+      };
   
       drawFace(face);
+      outEmotions(emoji);
     });
     
     var faceRect = null;
@@ -46,6 +58,17 @@
         faceRect.remove();
       }
       faceRect = paper.rect(face.x, face.y, face.w, face.h);
+    }
+
+    function outEmotions(emoji) {
+      document.getElementById('text-out').innerHTML = 
+        'anger: ' + emoji.anger + '<br>' + 
+        'disgust: ' + emoji.disgust + '<br>'
+        'fear: ' + emoji.fear + '<br>'
+        'joy: ' + emoji.joy + '<br>'
+        'neutral: ' + emoji.neutral + '<br>'
+        'sadness: ' + emoji.sadness + '<br>'
+        'surprise: ' + emoji.surprise;
     }
     
   
